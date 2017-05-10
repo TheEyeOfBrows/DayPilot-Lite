@@ -613,6 +613,7 @@ namespace DayPilot.Web.Ui
                     output.AddStyleAttribute("cursor", "default");
                 }
 
+				output.AddStyleAttribute("cursor", "pointer");
                 output.RenderBeginTag("div");
 
                 if (DurationBarVisible)
@@ -690,7 +691,7 @@ namespace DayPilot.Web.Ui
                     output.RenderBeginTag("div");
 
                     double barLeft = 100.0 * startDelta / width;
-                    double barWidth = 100.0 * realWidth / width;
+                    double barWidth = Math.Max(100.0 * realWidth / width, 1);
 
                     output.AddAttribute("class", PrefixCssClass("_event_bar_inner"));
                     output.AddStyleAttribute("left", barLeft + "%");

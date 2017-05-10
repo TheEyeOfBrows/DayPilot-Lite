@@ -111,19 +111,8 @@ namespace DayPilot.Web.Ui
 		{
 			get
 			{
-				if (End.Minute > 30)
-				{
-					DateTime hourPlus = End.AddHours(1);
-					return new DateTime(hourPlus.Year, hourPlus.Month, hourPlus.Day, hourPlus.Hour, 0, 0);
-				}
-				else if (End.Minute > 0)
-				{
-					return new DateTime(End.Year, End.Month, End.Day, End.Hour, 30, 0);
-				}
-				else
-				{
-					return new DateTime(End.Year, End.Month, End.Day, End.Hour, 0, 0);
-				}
+				int theMinute = (((End.Minute / 30) + 1) * 30);
+                return new DateTime(End.Year, End.Month, End.Day, End.AddHours(theMinute/60).Hour, theMinute % 60, 0);
 			}
 		}
 
